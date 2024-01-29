@@ -17,16 +17,8 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {                
-                // Clone the GitHub repository using Git plugin
-                script {
-                    // Retrieve GitHub token from Jenkins credentials
-                    def githubToken = credentials('github-token')
-
-                    // Set environment variable for Git authentication
-                    env.GITHUB_TOKEN = githubToken
-
-                    // Git clone command
-                    sh "git clone https://github.com/EseoheB/devops-fully-automated.git"       
+                echo 'Cloning the application code...'
+                git branch: 'main', url: 'https://github.com/EseoheB/devops-fully-automated.git'
             }
         }
 
