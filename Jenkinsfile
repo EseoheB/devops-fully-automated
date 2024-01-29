@@ -17,8 +17,9 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {                
-                echo 'Cloning the application code...'
-                git branch: 'main', url: 'https://github.com/EseoheB/devops-fully-automated.git'
+               // Clone the GitHub repository using Git plugin
+                withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                    git credentialsId: 'GITHUB_TOKEN', url: 'https://github.com/EseoheB/devops-fully-automated.git'
             }
         }
 
